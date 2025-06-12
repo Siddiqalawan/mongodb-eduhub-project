@@ -1,0 +1,6 @@
+pymongo
+pandas
+dnspython
+matplotlib
+seaborn
+
