@@ -1,0 +1,166 @@
+[
+    {
+        "course_id": "C001",
+        "title": "Big Data Processing with Spark",
+        "description": "Jumpstart your journey into AI by building deep learning models with neural networks.",
+        "instructor_id": "U016",
+        "category": "Web Development",
+        "level": "beginner",
+        "duration": 10,
+        "price": 250,
+        "tags": [
+            "unlimited-access",
+            "step-by-step-videos",
+            "career-coaching"
+        ],
+        "created_at": "2025-04-20T18:58:14",
+        "updated_at": "2025-06-13T07:55:40.267000",
+        "is_published": true
+    },
+    {
+        "course_id": "C002",
+        "title": "Git & GitHub for Collaboration",
+        "description": "Automate deployments and monitor systems with DevOps principles and modern tooling.",
+        "instructor_id": "U016",
+        "category": "AI",
+        "level": "intermediate",
+        "duration": 37,
+        "price": 0,
+        "tags": [
+            "includes-quizzes",
+            "unlimited-access",
+            "career-coaching"
+        ],
+        "created_at": "2025-01-31T13:48:55",
+        "updated_at": "2025-06-13T07:55:40.267000",
+        "is_published": true
+    },
+    {
+        "course_id": "C003",
+        "title": "Building REST APIs with FastAPI",
+        "description": "Automate deployments and monitor systems with DevOps principles and modern tooling.",
+        "instructor_id": "U005",
+        "category": "Data Engineering",
+        "level": "advanced",
+        "duration": 50,
+        "price": 150,
+        "tags": [
+            "practical-learning",
+            "job-focused",
+            "engaging-format"
+        ],
+        "created_at": "2025-03-19T09:20:57",
+        "updated_at": "2025-06-13T07:55:40.267000",
+        "is_published": true
+    },
+    {
+        "course_id": "C004",
+        "title": "Python for Beginners",
+        "description": "Work with massive datasets using big data platforms like Apache Spark and Hadoop.",
+        "instructor_id": "U003",
+        "category": "Data Engineering",
+        "level": "advanced",
+        "duration": 10,
+        "price": 150,
+        "tags": [
+            "unlimited-access",
+            "engaging-format",
+            "skills-oriented",
+            "interview-prep",
+            "lifetime-access"
+        ],
+        "created_at": "2025-03-04T17:17:09",
+        "updated_at": "2025-06-13T07:55:40.267000",
+        "is_published": false
+    },
+    {
+        "course_id": "C005",
+        "title": "Machine Learning with scikit-learn",
+        "description": "Design and implement scalable APIs and microservices using Flask and Django frameworks.",
+        "instructor_id": "U001",
+        "category": "Cloud Computing",
+        "level": "intermediate",
+        "duration": 29,
+        "price": 150,
+        "tags": [
+            "certificate-included",
+            "skills-oriented",
+            "resource-pack"
+        ],
+        "created_at": "2025-05-08T23:50:09",
+        "updated_at": "2025-06-13T07:55:40.268000",
+        "is_published": true
+    },
+    {
+        "course_id": "C006",
+        "title": "Data Engineering with Python",
+        "description": "Learn how to query, organize, and manage data using SQL and relational databases.",
+        "instructor_id": "U018",
+        "category": "Data Engineering",
+        "level": "advanced",
+        "duration": 15,
+        "price": 50,
+        "tags": [
+            "job-focused",
+            "engaging-format",
+            "peer-network"
+        ],
+        "created_at": "2025-05-12T03:01:24",
+        "updated_at": "2025-06-13T07:55:40.268000",
+        "is_published": false
+    },
+    {
+        "course_id": "C007",
+        "title": "Big Data Processing with Spark",
+        "description": "Design and implement scalable APIs and microservices using Flask and Django frameworks.",
+        "instructor_id": "U013",
+        "category": "DevOps",
+        "level": "beginner",
+        "duration": 38,
+        "price": 250,
+        "tags": [
+            "expert-guided",
+            "industry-relevant",
+            "certificate-included"
+        ],
+        "created_at": "2025-04-20T05:11:08",
+        "updated_at": "2025-06-13T07:55:40.268000",
+        "is_published": true
+    },
+    {
+        "course_id": "C008",
+        "title": "Deploying Applications with Docker",
+        "description": "Learn how to query, organize, and manage data using SQL and relational databases.",
+        "instructor_id": "U005",
+        "category": "DevOps",
+        "level": "beginner",
+        "duration": 24,
+        "price": 200,
+        "tags": [
+            "career-coaching",
+            "expert-guided",
+            "certificate-included"
+        ],
+        "created_at": "2024-12-22T21:53:28",
+        "updated_at": "2025-06-13T07:55:40.268000",
+        "is_published": false
+    },
+    {
+        "course_id": "C701",
+        "title": "Machine Learning Foundation",
+        "description": "Master the foundation of Ml, Model development and deployment.",
+        "instructor_id": "U007",
+        "category": "Machine Learning",
+        "level": "beginner",
+        "duration": 40,
+        "price": 150,
+        "tags": [
+            "project-based",
+            "career-ready",
+            "interactive"
+        ],
+        "created_at": "2025-06-13T07:55:42.994000",
+        "updated_at": "2025-06-13T07:55:42.994000",
+        "is_published": true
+    }
+]

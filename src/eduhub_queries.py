@@ -12,7 +12,8 @@ import time
 
 # Connect to MongoDB instance running locally
 
-client = MongoClient("mongodb://localhost:27017/")
+connection_string = "mongodb+srv://siddiqalawan:QHTmw1FYbuH4G9BT@alt-cluster.jjgozve.mongodb.net/?retryWrites=true&w=majority&appName=Alt-cluster"
+client = MongoClient(connection_string)
 db = client["eduhub"]
 
 # Define collection handles for easy access

@@ -1,0 +1,102 @@
+[
+    {
+        "assignment_id": "A001",
+        "course_id": "C006",
+        "lesson_id": "L023",
+        "title": "Assignment 1: MongoDB for Developers",
+        "description": "Only claim food laugh inside wall trip. Remain old nature skin way watch.",
+        "due_date": "2025-06-23T07:55:41.589000",
+        "max_score": 100,
+        "created_at": "2025-06-13T07:55:41.589000"
+    },
+    {
+        "assignment_id": "A002",
+        "course_id": "C002",
+        "lesson_id": "L021",
+        "title": "Assignment 2: Git & GitHub for Collaboration",
+        "description": "Budget morning kid character. Fall although data idea. Race peace step kitchen worry already. Prove treat truth society purpose source pattern interview.",
+        "due_date": "2025-06-25T07:55:41.589000",
+        "max_score": 100,
+        "created_at": "2025-06-13T07:55:41.589000"
+    },
+    {
+        "assignment_id": "A003",
+        "course_id": "C006",
+        "lesson_id": "L023",
+        "title": "Assignment 3: Kubernetes for Developers",
+        "description": "Last the floor recent national. Yeah size theory discussion long could. Action region art church spend lawyer.",
+        "due_date": "2025-06-16T07:55:41.589000",
+        "max_score": 100,
+        "created_at": "2025-06-13T07:55:41.589000"
+    },
+    {
+        "assignment_id": "A004",
+        "course_id": "C004",
+        "lesson_id": "L006",
+        "title": "Assignment 4: Unit Testing in Python",
+        "description": "Five add head. Information adult mouth quickly score. Maintain mind ok issue.",
+        "due_date": "2025-06-26T07:55:41.590000",
+        "max_score": 100,
+        "created_at": "2025-06-13T07:55:41.590000"
+    },
+    {
+        "assignment_id": "A005",
+        "course_id": "C001",
+        "lesson_id": "L013",
+        "title": "Assignment 5: Git & GitHub for Collaboration",
+        "description": "Little management bit service kind democratic laugh. Law analysis learn factor interview. Board area some head trip believe do.",
+        "due_date": "2025-06-24T07:55:41.590000",
+        "max_score": 100,
+        "created_at": "2025-06-13T07:55:41.590000"
+    },
+    {
+        "assignment_id": "A006",
+        "course_id": "C006",
+        "lesson_id": "L009",
+        "title": "Assignment 6: Machine Learning with scikit-learn",
+        "description": "Rule expert best baby ten art bad. West word hospital poor. Rise PM range finally.",
+        "due_date": "2025-06-24T07:55:41.590000",
+        "max_score": 100,
+        "created_at": "2025-06-13T07:55:41.590000"
+    },
+    {
+        "assignment_id": "A007",
+        "course_id": "C001",
+        "lesson_id": "L010",
+        "title": "Assignment 7: Python for Beginners",
+        "description": "Country opportunity data. Prove image guy act discover show itself remember.",
+        "due_date": "2025-06-23T07:55:41.590000",
+        "max_score": 100,
+        "created_at": "2025-06-13T07:55:41.590000"
+    },
+    {
+        "assignment_id": "A008",
+        "course_id": "C001",
+        "lesson_id": "L011",
+        "title": "Assignment 8: Git & GitHub for Collaboration",
+        "description": "Scientist avoid thank policy century good.",
+        "due_date": "2025-06-26T07:55:41.590000",
+        "max_score": 100,
+        "created_at": "2025-06-13T07:55:41.590000"
+    },
+    {
+        "assignment_id": "A009",
+        "course_id": "C004",
+        "lesson_id": "L006",
+        "title": "Assignment 9: Unit Testing in Python",
+        "description": "Bed good allow building. Find develop face vote rule before manage.",
+        "due_date": "2025-06-26T07:55:41.590000",
+        "max_score": 100,
+        "created_at": "2025-06-13T07:55:41.590000"
+    },
+    {
+        "assignment_id": "A010",
+        "course_id": "C008",
+        "lesson_id": "L018",
+        "title": "Assignment 10: MongoDB for Developers",
+        "description": "Hard ago simply manage minute. Budget water enjoy material.",
+        "due_date": "2025-06-20T07:55:41.590000",
+        "max_score": 100,
+        "created_at": "2025-06-13T07:55:41.590000"
+    }
+]
