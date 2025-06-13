@@ -12,7 +12,7 @@
 | C008      | Unit Testing in Python          | \$50        |
 | C701      | Machine Learning Foundation     | \$150       |
 
-## There are six courses within the specified price range, with prices ranging from $50 to $150. Notably, "Unit Testing in Python" appears twice at different price points, likely indicating different course levels like beginner and advanced.
+### There are six courses within the specified price range, with prices ranging from $50 to $150. Notably, "Unit Testing in Python" appears twice at different price points, likely indicating different course levels like beginner and advanced.
 
 
 ### Users who joined in the last 6 months
