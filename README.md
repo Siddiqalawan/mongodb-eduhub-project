@@ -54,68 +54,68 @@ Represents all user accounts (students, instructors, admins).
 
 | **Field**    | **Type** | **Description**                                       |
 | ------------ | -------- | ----------------------------------------------------- |
-| `userId`     | String   | Unique user identifier                                |
-| `email`      | String   | User's email address (**indexed** for quick lookup)   |
-| `firstName`  | String   | First name of the user                                |
-| `lastName`   | String   | Last name of the user                                 |
-| `role`       | String   | User role: `"student"` or `"instructor"`              |
-| `dateJoined` | Date     | The date the user registered on the platform          |
-| `isActive`   | Boolean  | Indicates if the account is active (for soft deletes) |
-| `profile`    | Object   | User’s bio, skills, and additional profile details    |
+| 'userId'     | String   | Unique user identifier                                |
+| 'email'      | String   | User's email address (**indexed** for quick lookup)   |
+| 'firstName'  | String   | First name of the user                                |
+| 'lastName'   | String   | Last name of the user                                 |
+| 'role'       | String   | User role: "student" or "instructor"            |
+| 'dateJoined' | Date     | The date the user registered on the platform          |
+| 'isActive'   | Boolean  | Indicates if the account is active (for soft deletes) |
+| 'profile'    | Object   | User’s bio, skills, and additional profile details    |
 
 
 ### courses Collection
 
 | **Field**      | **Type** | **Description**                                   |
 | -------------- | -------- | ------------------------------------------------- |
-| `courseId`     | String   | Unique identifier for the course                  |
-| `title`        | String   | Course name or title                              |
-| `description`  | String   | Overview of the course content                    |
-| `category`     | String   | Category label (e.g., `"Data"`, `"AI"`, etc.)     |
-| `instructorId` | String   | References the instructor (linked via userId)     |
-| `createdAt`    | Date     | Timestamp of when the course was created          |
-| `updatedAt`    | Date     | Timestamp of the last course update               |
-| `tags`         | Array    | List of tags/keywords for filtering and discovery |
-| `price`        | Number   | Course price in USD                               |
-| `isPublished`  | Boolean  | Indicates if the course is live/publicly visible  |
+| 'courseId'     | String   | Unique identifier for the course                  |
+| 'title'        | String   | Course name or title                              |
+| 'description'  | String   | Overview of the course content                    |
+| 'category'     | String   | Category label (e.g., '"Data"', '"AI"', etc.)     |
+| 'instructorId' | String   | References the instructor (linked via userId)     |
+| 'createdAt'    | Date     | Timestamp of when the course was created          |
+| 'updatedAt'    | Date     | Timestamp of the last course update               |
+| 'tags'         | Array    | List of tags/keywords for filtering and discovery |
+| 'price'        | Number   | Course price in USD                               |
+| 'isPublished'  | Boolean  | Indicates if the course is live/publicly visible  |
 
 ### lessons Collection
 | **Field**  | **Type** | **Description**                                                      |
 | ---------- | -------- | -------------------------------------------------------------------- |
-| `lessonId` | String   | Unique identifier for the lesson                                     |
-| `courseId` | String   | References `courses.courseId` (indicates which course it belongs to) |
-| `title`    | String   | Title of the lesson                                                  |
-| `content`  | String   | Body of the lesson (can be HTML or Markdown formatted)               |
-| `duration` | Number   | Estimated time to complete the lesson (in minutes)                   |
+| 'lessonId' | String   | Unique identifier for the lesson                                     |
+| 'courseId' | String   | References 'courses.courseId' (indicates which course it belongs to) |
+| 'title'    | String   | Title of the lesson                                                  |
+| 'content'  | String   | Body of the lesson (can be HTML or Markdown formatted)               |
+| 'duration' | Number   | Estimated time to complete the lesson (in minutes)                   |
 
 ### enrollments Collection
 | **Field**        | **Type** | **Description**                                     |
 | ---------------- | -------- | --------------------------------------------------- |
-| `enrollmentId`   | String   | Unique identifier for each enrollment               |
-| `studentId`      | String   | References `users.userId` (the student enrolled)    |
-| `courseId`       | String   | References `courses.courseId` (the enrolled course) |
-| `enrollmentDate` | Date     | Date the student enrolled in the course             |
-| `lastAccessed`   | Date     | The last time the student accessed the course       |
-| `progress`       | Number   | Percentage of the course completed (0–100%)         |
+| 'enrollmentId'   | String   | Unique identifier for each enrollment               |
+| 'studentId'      | String   | References 'users.userId' (the student enrolled)    |
+| 'courseId'       | String   | References 'courses.courseId' (the enrolled course) |
+| 'enrollmentDate' | Date     | Date the student enrolled in the course             |
+| 'lastAccessed'   | Date     | The last time the student accessed the course       |
+| 'progress'       | Number   | Percentage of the course completed (0–100%)         |
 
 ### assignments Collection
 | **Field**      | **Type** | **Description**                                          |
 | -------------- | -------- | -------------------------------------------------------- |
-| `assignmentId` | String   | Unique identifier for the assignment                     |
-| `courseId`     | String   | References `courses.courseId` (indicates related course) |
-| `title`        | String   | Title of the assignment                                  |
-| `instructions` | String   | Detailed instructions or prompt for the assignment       |
-| `dueDate`      | Date     | Deadline for submitting the assignment                   |
+| 'assignmentId' | String   | Unique identifier for the assignment                     |
+| 'courseId'     | String   | References 'courses.courseId' (indicates related course) |
+| 'title'        | String   | Title of the assignment                                  |
+| 'instructions' | String   | Detailed instructions or prompt for the assignment       |
+| 'dueDate'      | Date     | Deadline for submitting the assignment                   |
 
 ### submissions Collection
 | **Field**       | **Type** | **Description**                                             |
 | --------------- | -------- | ----------------------------------------------------------- |
-| `submissionId`  | String   | Unique identifier for the submission                        |
-| `assignmentId`  | String   | References `assignments.assignmentId`                       |
-| `studentId`     | String   | References `users.userId` (student who made the submission) |
-| `submittedDate` | Date     | Timestamp when the submission was made                      |
-| `grade`         | Number   | Score or mark awarded to the submission                     |
-| `isGraded`      | Boolean  | Indicates whether the submission has been graded            |
+| 'submissionId'  | String   | Unique identifier for the submission                        |
+| 'assignmentId'  | String   | References 'assignments.assignmentId'                       |
+| 'studentId'     | String   | References 'users.userId' (student who made the submission) |
+| 'submittedDate' | Date     | Timestamp when the submission was made                      |
+| 'grade'         | Number   | Score or mark awarded to the submission                     |
+| 'isGraded'      | Boolean  | Indicates whether the submission has been graded            |
 
 ## Relationships
 instructorId (courses) → users._id.
@@ -221,7 +221,7 @@ This project is licensed under the MIT License.
 Feel free to use, modify, and distribute this project in accordance with the terms of the license.
 
 ## Contributors
-Siddiaqa Lawan
+Siddiqa Lawan
 
 ## Submission Details
 Due Date: Sunday, June 15, 2025, 11:59 PM WAT.
