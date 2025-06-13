@@ -16,7 +16,7 @@ Smart Search & Filters: Enables users to search for courses using keyword filter
 
 ## Setup Instructions
 Prerequisites
-MongoDB v8.0 or higher (https://www.mongodb.com/try/download/community)
+MongoDB v8.0 or higher 
 Python 3.8+
 Required Python libraries: pymongo, pandas, datetime
 
