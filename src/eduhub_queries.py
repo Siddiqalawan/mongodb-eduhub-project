@@ -1,7 +1,6 @@
 
 # This Python script contains all MongoDB operations for the EduHub platform using PyMongo.
-# It includes CRUD operations, performance tuning, error handling, text and geospatial search,
-# recommendations, and data archiving functionalities.
+
 
 from pymongo import MongoClient, ASCENDING, TEXT, GEOSPHERE
 from pymongo.errors import DuplicateKeyError, WriteError, WriteConcernError
@@ -23,136 +22,268 @@ assignments_col = db["assignments"]
 enrollments_col = db["enrollments"]
 
 
-# TEXT SEARCH FUNCTIONALITY - Create Text Index
-# Enables full-text search across multiple fields
 
-courses_col.create_index([
-    ("title", TEXT),
-    ("description", TEXT),
-    ("tags", TEXT)
-])
+# ---------------------------------------------
+# 1. Find courses priced between $50 and $200
+# ---------------------------------------------
+courses = courses_col.find({"price": {"$gte": 50, "$lte": 200}})
+print("Courses priced between $50 and $200:")
+for course in courses:
+    print(f"{course['course_id']} - {course['title']} (${course['price']})")
 
-def search_courses_by_text(keyword):
-    """Perform a full-text search on title, description, or tags."""
-    results = courses_col.find({ "$text": { "$search": keyword } })
-    for course in results:
-        print(f"{course['title']} - {course['description'][:50]}...")
+# ---------------------------------------------
+# 2. Get users who joined in the last 6 months
+# ---------------------------------------------
+six_months_ago = datetime.now() - timedelta(days=180)
+recent_users = users_col.find({"date_joined": {"$gte": six_months_ago}})
+print("\nUsers who joined in the last 6 months:")
+for user in recent_users:
+    print(f"{user['user_id']} - {user['first_name']} {user['last_name']} (Joined: {user['date_joined']})")
 
+# ---------------------------------------------
+# 3. Find courses with specific tags using $in
+# ---------------------------------------------
+target_tags = ["career-ready", "assignment-driven", "interactive"]
+courses = courses_col.find({"tags": {"$in": target_tags}})
+print("\nCourses with selected tags:")
+for course in courses:
+    print(f"{course['course_id']} - {course['title']} | Tags: {course['tags']}")
 
-# RECOMMENDATION ENGINE - Based on user's skill match
-# Uses aggregation to calculate matching tags
+# ---------------------------------------------
+# 4. Retrieve assignments due in the next 7 days
+# ---------------------------------------------
+today = datetime.now()
+next_week = today + timedelta(days=7)
+upcoming_assignments = assignments_col.find({
+    "due_date": {"$gte": today, "$lte": next_week}
+})
+print("\nAssignments due in the next 7 days:")
+for assignment in upcoming_assignments:
+    print(f"{assignment['assignment_id']} - {assignment['title']} | Due: {assignment['due_date']}")
 
-def recommend_courses(user_id):
-    """Recommend courses based on intersection of user skills and course tags."""
-    user = users_col.find_one({"user_id": user_id})
-    if not user:
-        print("User not found.")
-        return
+# ---------------------------------------------
+# 5. Count total enrollments per course
+# ---------------------------------------------
+pipeline = [
+    {"$group": {"_id": "$course_id", "total_enrollments": {"$sum": 1}}},
+    {"$sort": {"total_enrollments": -1}}
+]
+results = list(enrollments_col.aggregate(pipeline))
+print("\nTotal enrollments per course:")
+for item in results:
+    print(f"Course: {item['_id']} | Enrollments: {item['total_enrollments']}")
 
-    user_skills = user["profile"]["skills"]
+# ---------------------------------------------
+# 6. Average rating per course
+# ---------------------------------------------
+pipeline = [
+    {"$project": {"course_id": 1, "title": 1, "average_rating": {"$avg": "$ratings"}}},
+    {"$sort": {"average_rating": -1}}
+]
+results = list(courses_col.aggregate(pipeline))
+print("\nAverage course rating:")
+for course in results:
+    avg = course.get('average_rating')
+    print(f"{course['course_id']} - {course['title']} | Avg Rating: {round(avg, 2) if avg else 'Not Available'}")
 
-    # Aggregation pipeline to match and rank relevant courses
-    pipeline = [
-        { "$match": { "tags": {"$in": user_skills}, "is_published": True }},
-        { "$addFields": {
-            "matched_skills": { "$size": { "$setIntersection": ["$tags", user_skills] }}
-        }},
-        { "$sort": { "matched_skills": -1, "price": 1 }},
-        { "$limit": 5 }
-    ]
+# ---------------------------------------------
+# 7. Group courses by category
+# ---------------------------------------------
+pipeline = [
+    {"$group": {"_id": "$category", "total_courses": {"$sum": 1}}},
+    {"$sort": {"total_courses": -1}}
+]
+results = list(courses_col.aggregate(pipeline))
+print("\nTotal courses per category:")
+for item in results:
+    print(f"{item['_id']} → {item['total_courses']} courses")
 
-    recommendations = courses_col.aggregate(pipeline)
-    for course in recommendations:
-        print(f"{course['title']} (Matched Skills: {course['matched_skills']})")
+# ---------------------------------------------
+# 8. Average grade per student
+# ---------------------------------------------
+pipeline = [
+    {"$group": {"_id": "$user_id", "average_grade": {"$avg": "$grade"}}},
+    {"$sort": {"average_grade": -1}}
+]
+results = list(submissions_col.aggregate(pipeline))
+print("\nAverage grade per student:")
+for student in results:
+    avg = student.get('average_grade')
+    print(f"Student: {student['_id']} → Avg Grade: {round(avg, 2) if avg else 'Not Available'}")
 
-
-# ARCHIVING OLD ENROLLMENTS
-# Moves enrollments older than 6 months to archive
-
-archived_col = db["archived_enrollments"]
-
-def archive_old_enrollments():
-    """Archive enrollments that were created more than 6 months ago."""
-    six_months_ago = datetime.now() - timedelta(days=180)
-    old_enrollments = list(enrollments_col.find({ "enrolled_on": { "$lt": six_months_ago } }))
-    if old_enrollments:
-        archived_col.insert_many(old_enrollments)
-        ids = [e["_id"] for e in old_enrollments]
-        enrollments_col.delete_many({ "_id": { "$in": ids } })
-        print(f"Archived {len(old_enrollments)} records.")
-    else:
-        print("No records to archive.")
-
-
-# GEOSPATIAL QUERIES - Course recommendations by location
-# Updates course documents with random Abuja coordinates
-# and creates a 2dsphere index to support geospatial search
-
-courses_col.update_many(
-    {},
-    [{
-        "$set": {
-            "location": {
-                "type": "Point",
-                "coordinates": [
-                    random.uniform(7.40, 7.60),  # Longitude
-                    random.uniform(6.40, 6.70)   # Latitude
-                ]
-            }
+# ---------------------------------------------
+# 9. Completion rate by course
+# ---------------------------------------------
+pipeline = [
+    {"$match": {"status": "completed"}},
+    {"$group": {"_id": "$course_id", "completed_count": {"$sum": 1}}},
+    {"$lookup": {
+        "from": "enrollments",
+        "localField": "_id",
+        "foreignField": "course_id",
+        "as": "enrollments"
+    }},
+    {"$project": {
+        "course_id": "$_id",
+        "completed_count": 1,
+        "total_enrolled": {"$size": "$enrollments"},
+        "completion_rate": {
+            "$cond": [
+                {"$eq": [{"$size": "$enrollments"}, 0]},
+                0,
+                {"$multiply": [{"$divide": ["$completed_count", {"$size": "$enrollments"}]}, 100]}
+            ]
         }
-    }]
-)
+    }},
+    {"$sort": {"completion_rate": -1}}
+]
+results = list(submissions_col.aggregate(pipeline))
+print("\nCompletion rate by course:")
+for item in results:
+    print(f"{item['course_id']} → {round(item['completion_rate'], 2)}%")
 
-# Create 2dsphere index for geospatial queries
-courses_col.create_index([("location", GEOSPHERE)])
+# ---------------------------------------------
+# 10. Top 5 performing students
+# ---------------------------------------------
+pipeline = [
+    {"$group": {"_id": "$user_id", "average_grade": {"$avg": "$grade"}, "total_submissions": {"$sum": 1}}},
+    {"$sort": {"average_grade": -1}},
+    {"$limit": 5}
+]
+results = list(submissions_col.aggregate(pipeline))
+print("\nTop Performing Students:")
+for student in results:
+    avg = student.get('average_grade')
+    print(f"Student: {student['_id']} → Avg Grade: {round(avg, 2)} | Submissions: {student['total_submissions']}")
 
-def recommend_nearby_courses(coords, max_km=10):
-    """Find published courses within a given radius (in kilometers)."""
-    results = courses_col.find({
-        "location": {
-            "$near": {
-                "$geometry": {
-                    "type": "Point",
-                    "coordinates": coords
-                },
-                "$maxDistance": max_km * 1000  # Convert km to meters
-            }
-        },
-        "is_published": True
-    })
-    for course in results:
-        print(f"{course['title']} - {course['category']}")
+# ---------------------------------------------
+# 11. Instructor analysis – total students taught
+# ---------------------------------------------
+pipeline = [
+    {"$lookup": {
+        "from": "courses",
+        "localField": "course_id",
+        "foreignField": "course_id",
+        "as": "course_info"
+    }},
+    {"$unwind": "$course_info"},
+    {"$group": {
+        "_id": "$course_info.instructor_id",
+        "total_students": {"$addToSet": "$user_id"}
+    }},
+    {"$project": {
+        "instructor_id": "$_id",
+        "total_students": {"$size": "$total_students"},
+        "_id": 0
+    }}
+]
+results = list(enrollments_col.aggregate(pipeline))
+print("\nInstructor analysis – students taught:")
+for item in results:
+    print(f"Instructor: {item['instructor_id']} → Students Taught: {item['total_students']}")
 
+# ---------------------------------------------
+# 12. Average course rating per instructor
+# ---------------------------------------------
+pipeline = [
+    {"$group": {"_id": "$instructor_id", "average_rating": {"$avg": "$rating"}}},
+    {"$project": {"instructor_id": "$_id", "average_rating": 1, "_id": 0}}
+]
+results = list(courses_col.aggregate(pipeline))
+print("\nAverage course rating per instructor:")
+for item in results:
+    rating = item.get('average_rating')
+    print(f"{item['instructor_id']} → {round(rating, 2) if rating else 'Not Available'}")
 
-# PERFORMANCE ANALYSIS - Analyze execution time and cost
-# Uses .explain() to examine query performance and index usage
+# ---------------------------------------------
+# 13. Revenue generated per instructor
+# ---------------------------------------------
+pipeline = [
+    {"$lookup": {
+        "from": "courses",
+        "localField": "course_id",
+        "foreignField": "course_id",
+        "as": "course_info"
+    }},
+    {"$unwind": "$course_info"},
+    {"$group": {
+        "_id": "$course_info.instructor_id",
+        "total_revenue": {"$sum": "$course_info.price"}
+    }},
+    {"$project": {"instructor_id": "$_id", "total_revenue": 1, "_id": 0}}
+]
+results = list(enrollments_col.aggregate(pipeline))
+print("\nRevenue generated per instructor:")
+for item in results:
+    print(f"{item['instructor_id']} → {round(item['total_revenue'], 2)} USD")
 
-def analyze_query_performance(query):
-    """Use explain() to analyze MongoDB query performance."""
-    explain = courses_col.find(query).explain()
-    print("Execution Time (ms):", explain["executionStats"]["executionTimeMillis"])
-    print("Documents Examined:", explain["executionStats"]["totalDocsExamined"])
-    print("Index Used:", explain["queryPlanner"]["winningPlan"].get("inputStage", {}).get("indexName", "None"))
+# ---------------------------------------------
+# 14. Monthly enrollment trends
+# ---------------------------------------------
+pipeline = [
+    {"$group": {
+        "_id": {"year": {"$year": "$enrolled_at"}, "month": {"$month": "$enrolled_at"}},
+        "total_enrollments": {"$sum": 1}
+    }},
+    {"$sort": {"_id.year": 1, "_id.month": 1}}
+]
+results = list(enrollments_col.aggregate(pipeline))
+print("\nMonthly enrollment trends:")
+for item in results:
+    year = item['_id']['year']
+    month = item['_id']['month']
+    total = item['total_enrollments']
+    print(f"{year}-{str(month).zfill(2)} → {total} enrollments")
 
+# ---------------------------------------------
+# 15. Most popular course categories
+# ---------------------------------------------
+pipeline = [
+    {"$lookup": {
+        "from": "courses",
+        "localField": "course_id",
+        "foreignField": "course_id",
+        "as": "course_info"
+    }},
+    {"$unwind": "$course_info"},
+    {"$group": {
+        "_id": "$course_info.category",
+        "total_enrollments": {"$sum": 1}
+    }},
+    {"$sort": {"total_enrollments": -1}}
+]
+results = list(enrollments_col.aggregate(pipeline))
+print("\nMost popular course categories:")
+for item in results:
+    print(f"Category: {item['_id']} → Enrollments: {item['total_enrollments']}")
 
-# ERROR HANDLING EXAMPLE - Catches various MongoDB errors
-# Demonstrates duplicate key, validation, and write concern errors
+# ---------------------------------------------
+# 16. Student engagement metrics
+# ---------------------------------------------
 
-try:
-    users_col.insert_one({
-        "_id": 123,  
-        "user_id": "U001",
-        "email": "duplicate@example.com",
-        "first_name": "Error",
-        "last_name": "Case",
-        "role": "admin",  
-        "date_joined": datetime.now()
-    })
-except DuplicateKeyError as e:
-    print("Duplicate Key Error:", e)
-except WriteError as e:
-    print("Validation Error:", e)
-except WriteConcernError as e:
-    print("Write Concern Error:", e)
-except Exception as e:
-    print("General Error:", e)
+# 1. Number of courses enrolled per student
+pipeline = [
+    {"$group": {"_id": "$user_id", "courses_enrolled": {"$sum": 1}}},
+    {"$project": {"user_id": "$_id", "courses_enrolled": 1, "_id": 0}}
+]
+courses_enrolled = list(enrollments_col.aggregate(pipeline))
+
+# 2. Number of assignments submitted per student
+pipeline = [
+    {"$group": {"_id": "$user_id", "assignments_submitted": {"$sum": 1}}},
+    {"$project": {"user_id": "$_id", "assignments_submitted": 1, "_id": 0}}
+]
+assignments_done = list(submissions_col.aggregate(pipeline))
+
+# Combine engagement data
+engagement = defaultdict(lambda: {"courses_enrolled": 0, "assignments_submitted": 0})
+for item in courses_enrolled:
+    uid = item["user_id"]
+    engagement[uid]["courses_enrolled"] = item["courses_enrolled"]
+for item in assignments_done:
+    uid = item["user_id"]
+    engagement[uid]["assignments_submitted"] = item["assignments_submitted"]
+
+print("\nStudent Engagement Metrics:")
+for user_id, metrics in engagement.items():
+    print(f"User: {user_id} → Courses: {metrics['courses_enrolled']} | Submissions: {metrics['assignments_submitted']}")
