@@ -1,6 +1,12 @@
 import json, os
 from pymongo import MongoClient
 from datetime import datetime
+from dotenv import load_dotenv
+import os
+
+# Load environment variables from .env file
+load_dotenv()
+
 
 # ✅ Custom JSON encoder to handle datetime
 class JSONEncoderWithDate(json.JSONEncoder):
@@ -9,8 +15,8 @@ class JSONEncoderWithDate(json.JSONEncoder):
             return obj.isoformat()  # Convert datetime to string
         return super().default(obj)
 
-# Connect to MongoDB
-connection_string = "mongodb+srv://siddiqalawan:QHTmw1FYbuH4G9BT@alt-cluster.jjgozve.mongodb.net/?retryWrites=true&w=majority&appName=Alt-cluster"
+# Get the MongoDB connection string from environment
+connection_string = os.getenv("MONGODB_URI")
 client = MongoClient(connection_string)
 
 # ✅ Make sure this matches your actual DB name
