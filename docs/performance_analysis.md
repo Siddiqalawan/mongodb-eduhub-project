@@ -2,7 +2,7 @@
 
 ## Task 4.1: Complex Queries
 
-#### Courses with price between $50 and $200
+### Courses with price between $50 and $200
 | Course ID | Course Title                    | Price (USD) |
 | --------- | ------------------------------- | ----------- |
 | C003      | Unit Testing in Python          | \$100       |
@@ -12,26 +12,10 @@
 | C008      | Unit Testing in Python          | \$50        |
 | C701      | Machine Learning Foundation     | \$150       |
 
-## 🎯 Key Observations
-### 🔹 Pricing Strategy
-Prices range from $50 to $150, hitting a sweet spot for learners—affordable yet premium.
-C003 vs C008: Same course title but priced differently — shows a strategy of tiered offerings (basic vs full version, or seasonal discounts).
-
-### 🔹 Content Focus
-Most courses fall into AI/ML/Data space, which aligns with current job market demand.
-Courses like C005, C006, and C701 are likely in high demand due to their advanced and applied nature.
-
-🔹 Enrollment Impact:
-C701 had 3 enrollments (strong for a $150 course).
-C006 had 4 enrollments (top performer).
-C007 had 2 enrollments (lowest priced; may serve as a lead magnet).
-C005 had 1 enrollment (may need marketing push despite technical depth).
-C008 had 1 enrollment (priced lower, but could be competing with C003).
-C003 did not appear in enrollment data, may be underperforming or not yet live.
+## There are six courses within the specified price range, with prices ranging from $50 to $150. Notably, "Unit Testing in Python" appears twice at different price points, likely indicating different course levels like beginner and advanced.
 
 
-
-#### Users who joined in the last 6 months
+### Users who joined in the last 6 months
 | User ID | Name               | Date Joined         |
 | ------- | ------------------ | ------------------- |
 | U003    | Laura Davis        | 2024-12-17 15:39:44 |
@@ -53,45 +37,25 @@ C003 did not appear in enrollment data, may be underperforming or not yet live.
 | U008    | James Owen         | 2025-03-22 00:39:40 |
 | U010    | Noah Oconnor       | 2025-02-17 08:59:22 |
 
-## 🧠 Key Insights
-### 1. 🥇 Top Performers
-U013 - Heather Herrera: 10 courses, 6 submissions, avg grade: 85.0.
-U016 - Barbara Sanders: 6 submissions but grades missing. Suggests engagement.
+## This table shows 17 user records with their join dates, but some `User ID`s (e.g., U004, U008) appear more than once, indicating possible duplicates in the user data.
 
-### 2. 📈 Growth Trend
-Most users joined between January and April 2025, showing a strong onboarding period after the new year — possibly due to promotions or semester start.
 
-#### Courses that have specific tags using $in operator
+### Courses that have specific tags using $in operator
 | Course ID | Course Title                | Tags                                              |
 | --------- | --------------------------- | ------------------------------------------------- |
 | C701      | Machine Learning Foundation | \['project-based', 'career-ready', 'interactive'] |
 
-#### Assignments with due dates in the next week.
+
+### Assignments with due dates in the next week.
 | Assignment ID | Title                                         | Due Date                   |
 | ------------- | --------------------------------------------- | -------------------------- |
 | A001          | Assignment 1: Computer Vision with OpenCV     | 2025-06-18 14:26:57.405000 |
 | A006          | Assignment 6: Unit Testing in Python          | 2025-06-16 14:26:57.411000 |
 | A007          | Assignment 7: Building REST APIs with FastAPI | 2025-06-19 14:26:57.411000 |
 
-## 🔍 Key Insights
-### 1. ⏰ Time Sensitivity
-All three assignments are due within 3 days of each other, increasing the workload pressure for students.
-
-### 2. 🎯 Course Coverage
-Each assignment comes from a different technical focus:
-A001: Related to Computer Vision (AI specialization)
-A006: Focuses on Testing and Code Quality (Software Engineering)
-A007: Tied to Backend Development / API Design (Web Development)
-This shows the platform is actively engaging learners across different disciplines simultaneously — good for curriculum diversity, but may be stressful for users enrolled in multiple of these courses.
-
-### 4. ⚠️ Engagement Trigger
-Assignments are a great opportunity to boost engagement:
-Use notifications, countdowns, or progress bars to keep learners aware.
-Encourage early submission for quality work.
-
+### Three assignments are scheduled with due dates between June 16 and June 19, 2025. 
 
 ## Task 4.2: Aggregation Pipeline
-
 
 #### Total enrollments per course
 | Course ID | Total Enrollments |
@@ -105,19 +69,7 @@ Encourage early submission for quality work.
 | C005      | 1                 |
 | C002      | 1                 |
 
-## 📌 Insights
-1. 🥇 Most Popular Course
-C006 (Deep Learning with TensorFlow) has the highest enrollments (4).This suggests high demand for deep learning skills.
-
-2. 🧠 Strong Interest in Machine Learning & AI
-C006 and C701 (Machine Learning Foundation) together account for 7 enrollments, which is 35% of total enrollments across all listed courses.Indicates a trend: learners are prioritizing AI-related content.
-
-3. 💼 Consistent Demand for DevOps and Cloud
-C001 (Kubernetes for Developers) has 3 enrollments — showing strong demand for infrastructure/devops skills.
-
-4. 🟡 Moderate Engagement Courses
-C007 (Data Viz with Seaborn) and C004 have 2 enrollments each.These courses may benefit from better promotion or project incentives to drive more uptake.
-
+### The course with the highest enrollment is C006 with 4 enrollments, followed by C701 and C001 with 3 enrollments each.
 
 
 #### Average course rating.
@@ -133,6 +85,7 @@ C007 (Data Viz with Seaborn) and C004 have 2 enrollments each.These courses may 
 | C008      | Unit Testing in Python             | Not Available |
 | C701      | Machine Learning Foundation        | Not Available |
 
+### Data for average rating not available 
 
 #### Total courses per category:
 | Category         | Total Courses |
@@ -143,10 +96,7 @@ C007 (Data Viz with Seaborn) and C004 have 2 enrollments each.These courses may 
 | Cloud Computing  | 1             |
 | Machine Learning | 1             |
 
-## 📌 Insights
-1. 🏗️ Web Development Dominates with 4 courses, Web Development is the most represented category. Suggests a strong focus on front-end/back-end development skills.
-
-2. 🧠 Emerging Technologies Underrepresented: AI, Cloud, Machine Learning, and DevOps together only have 5 courses combined. These are high-demand fields, so this shows a gap and opportunity for expansion.
+### Web Development has the highest number of courses (4), indicating a strong focus in that category, followed by AI with 2 courses, while DevOps, Cloud Computing, and Machine Learning each have one course.
 
 
 #### Average grade per student:
@@ -154,6 +104,8 @@ C007 (Data Viz with Seaborn) and C004 have 2 enrollments each.These courses may 
 | ---------- | ------------- |
 | U013       | 85.0          |
 | U016       | Not Available |
+
+### Two students have an average grade of 85.0, while the rest have no available grade data.
 
 
 #### Top Performing Student:
@@ -171,6 +123,7 @@ C007 (Data Viz with Seaborn) and C004 have 2 enrollments each.These courses may 
 | U003          | 2               |
 | U012          | 2               |
 
+### Instructor U001, U003, and U012 each taught 2 students, while U007 and U008 taught 1 student each.
 
 
 #### Average course rating per instructor
@@ -182,6 +135,7 @@ C007 (Data Viz with Seaborn) and C004 have 2 enrollments each.These courses may 
 | U007          | Not Available  |
 | U001          | Not Available  |
 
+### Data not available
 
 #### Revenue generated per instructor 
 | Instructor ID | Total Revenue (USD) |
@@ -192,6 +146,7 @@ C007 (Data Viz with Seaborn) and C004 have 2 enrollments each.These courses may 
 | U008          | 600 USD             |
 | U007          | 450 USD             |
 
+### Instructor U003 has generated the highest revenue at \$1050, followed by U012 and U007 with \$600.
 
 #### Most popular course categories
 | Category         | Total Enrollments |
@@ -201,8 +156,7 @@ C007 (Data Viz with Seaborn) and C004 have 2 enrollments each.These courses may 
 | Machine Learning | 3                 |
 | DevOps           | 3                 |
 
-## INSIGHT: 
-AI has the highest number of enrollment followed by web development whle machine leraning and devops has the least.
+### AI has the highest number of enrollment followed by web development whle machine leraning and devops has the least.
 
 #### Student metrics engagement 
 | User ID | Courses Enrolled | Submissions Made |
@@ -211,66 +165,38 @@ AI has the highest number of enrollment followed by web development whle machine
 | U016    | 4                | 6                |
 | U600    | 3                | 0                |
 
-🧑‍🎓 User Breakdown
-1. User ID: U013
-Courses Enrolled: 10
-This user is enrolled in 10 different courses — a high level of engagement.
-Submissions Made: 6
-They have submitted assignments in 6 of those courses.
 
-🔍 What it tells us:U013 is likely a very active learner. Enrolling in many courses and submitting assignments shows strong participation.
-
-2. User ID: U016
-Courses Enrolled: 4
-This user is taking 4 courses — a moderate level of engagement.
-Submissions Made: 6
-Despite only 4 course enrollments, the user has made 6 submissions, which may indicate:
-Some courses have multiple assignments.Or the user resubmitted tasks.
-
-🔍 What it tells us: U016 is consistent with submissions and may be dedicated to mastering fewer courses.
-
-3. User ID: U600
-Courses Enrolled: 3
-The user has signed up for 3 courses.
-Submissions Made: 0
-No assignment has been submitted yet.
-
-🔍 What it tells us:U600 may be a new or inactive user. They're enrolled but haven’t started coursework actively.
-
-
-
-## ✅ Summary: Query Optimization & Execution Stats
-| **Metric**                   | **Details**                                                                |
+## Summary: Query Optimization & Execution Stats
+| Metric                   | Details                                                                |
 | ---------------------------- | -------------------------------------------------------------------------- |
-| **Execution Time**           | `0 ms` – Query executed very quickly.                                      |
-| **Total Documents Examined** | `2` – MongoDB only scanned 2 documents to find the result.                 |
-| **Index Used**               | `title_1_category_1` – A compound index on `title` and `category` fields.  |
-| **Query Type**               | `Regex search` on title + `Equality match` on category.                    |
-| **Winning Plan**             | `IXSCAN` (Index Scan) → `FETCH` – Efficient use of index to retrieve docs. |
-| **Index Efficiency**         | High – Query used the appropriate compound index and avoided full scan.    |
+| Execution Time           | `0 ms` – Query executed very quickly.                                      |
+| Total Documents Examined | `2` – MongoDB only scanned 2 documents to find the result.                 |
+| Index Used               | `title_1_category_1` – A compound index on `title` and `category` fields.  |
+| Query Type               | `Regex search` on title + `Equality match` on category.                    |
+| Winning Plan             | `IXSCAN` (Index Scan) → `FETCH` – Efficient use of index to retrieve docs. |
+| Index Efficiency         | High – Query used the appropriate compound index and avoided full scan.    |
 
-## 🔍 Key Takeaways
+## Key Takeaways
 Efficient Query: The index on title and category was effectively used, avoiding a collection scan.
 Low Document Scan Count: Only 2 documents examined means minimal resource usage.
 Fast Execution: With 0 ms runtime, this is a highly optimized query.
 Regex Support in Index: The query used a case-insensitive regex on the title field, which was still index-supported thanks to the regex's nature and index ordering.
 
 
-## ✅ Summary: Query Optimization on enrollments Collection
-| **Metric**               | **Details**                                                 |
+## Summary: Query Optimization on enrollments Collection
+| Metric               | Details                                                 |
 | ------------------------ | ----------------------------------------------------------- |
-| **Query Target**         | `enrollments` collection                                    |
-| **Query Condition**      | `student_id = "U004"`                                       |
-| **Execution Plan**       | **Index Scan (`IXSCAN`)** followed by **Fetch (`FETCH`)**   |
-| **Index Used**           | `student_id_1`                                              |
-| **Index Bounds**         | `["U004", "U004"]` – Narrow scan using equality match       |
-| **Documents Examined**   | Not shown, but very likely **minimal** due to index use     |
-| **Query Execution Time** | Fast (exact time not specified, but near-instant)           |
-| **Optimization Flags**   | All optimization limits (`maxScansToExplode`, etc.) avoided |
+| Query Target         | `enrollments` collection                                    |
+| Query Condition      | `student_id = "U004"`                                       |
+| Execution Plan       | Index Scan (`IXSCAN`) followed by Fetch (`FETCH`)   |
+| Index Used           | `student_id_1`                                              |
+| Index Bounds         | `["U004", "U004"]` – Narrow scan using equality match       |
+| Documents Examined   | Not shown, but very likely minimal due to index use     |
+| Query Execution Time | Fast (exact time not specified, but near-instant)           |
+| Optimization Flags   | All optimization limits (`maxScansToExplode`, etc.) avoided |
 
 
-
-## 🔍 Key Points
+## Key Points
 Efficient Index Use: The query used the student_id_1 index to quickly locate matching enrollment documents.
 Precise Bounds: The bounds show that it searched exactly for "U004" with no range or full scan.
 Minimal Cost: Since student_id is likely a low-cardinality field and the query is exact-match, MongoDB didn't need to scan many documents.
